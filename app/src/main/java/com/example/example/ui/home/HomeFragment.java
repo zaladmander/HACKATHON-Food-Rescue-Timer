@@ -4,34 +4,48 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.example.databinding.FragmentHomeBinding;
+import com.example.example.R;
+import com.example.example.ui.food.FoodViewModel;
+
+import org.jspecify.annotations.NonNull;
 
 public class HomeFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private EditText editTextText;
+    private Button buttonDonate;
+    private FoodViewModel foodViewModel;
 
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        editTextText = root.findViewById(R.id.editTextText);
+        buttonDonate = root.findViewById(R.id.buttonDonate);
+
+        // SHARED ViewModel: this is the important part
+        foodViewModel = new ViewModelProvider(requireActivity())
+                .get(FoodViewModel.class);
+
+        // Now the click listener:
+        buttonDonate.setOnClickListener(v -> {
+            String desc = editTextText.getText().toString().trim();
+
+            if (!desc.isEmpty()) {
+                foodViewModel.addDonation(desc);  // <-- THIS adds it to the list
+                editTextText.setText("");        // clear box
+            }
+        });
+
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 }
