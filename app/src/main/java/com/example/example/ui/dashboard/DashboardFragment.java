@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.example.R;
 import com.example.example.ui.food.FoodAdapter;
+import com.example.example.ui.food.FoodItem;
 import com.example.example.ui.food.FoodViewModel;
 
 import org.jspecify.annotations.NonNull;
@@ -31,7 +32,7 @@ public class DashboardFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.recyclerFood);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new FoodAdapter(new ArrayList<String>());
+        adapter = new FoodAdapter(new ArrayList<FoodItem>());
         recyclerView.setAdapter(adapter);
 
         foodViewModel = new ViewModelProvider(requireActivity())
