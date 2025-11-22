@@ -25,22 +25,20 @@ public class FoodViewModel extends ViewModel {
         return items;
     }
 
-    public void addDonation(String description) {
-        if (description == null || description.trim().isEmpty()) {
-            return;
-        }
+    public void addDonation(String description, int minutes) {
+        if (description == null || description.trim().isEmpty()) return;
+        if (minutes <= 0) return;
 
         List<FoodItem> current = items.getValue();
         if (current == null) {
             current = new ArrayList<>();
         }
 
-        current.add(new FoodItem(description, 30)); // start at 30 minutes
-
+        current.add(new FoodItem(description, minutes));
         items.setValue(new ArrayList<>(current));
-
         startTicking();
     }
+
 
     private void startTicking() {
         if (ticking) return;
