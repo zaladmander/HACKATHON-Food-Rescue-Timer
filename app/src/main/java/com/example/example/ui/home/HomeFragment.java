@@ -18,7 +18,8 @@ import org.jspecify.annotations.NonNull;
 
 public class HomeFragment extends Fragment {
 
-    private EditText editTextText;
+    EditText editTextTitle;
+    EditText editTextDescription;
     private Button buttonDonate;
     private FoodViewModel foodViewModel;
     private NumberPicker numberPickerMinutes;
@@ -31,7 +32,8 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        editTextText = root.findViewById(R.id.editTextText);
+        editTextTitle = root.findViewById(R.id.editTextTitle);
+        editTextDescription = root.findViewById(R.id.editTextText);
         buttonDonate = root.findViewById(R.id.buttonDonate);
         numberPickerMinutes = root.findViewById(R.id.numberPickerMinutes);
 
@@ -47,14 +49,15 @@ public class HomeFragment extends Fragment {
         foodViewModel = new ViewModelProvider(requireActivity())
                 .get(FoodViewModel.class);
 
-        // Now the click listener:
         buttonDonate.setOnClickListener(v -> {
-            String desc = editTextText.getText().toString().trim();
+            String title = editTextTitle.getText().toString().trim();
+            String desc = editTextDescription.getText().toString().trim();
             int minutes = numberPickerMinutes.getValue();
 
-            if (!desc.isEmpty()) {
-                foodViewModel.addDonation(desc, minutes);
-                editTextText.setText("");
+            if (!title.isEmpty()) {
+                foodViewModel.addDonation(title, desc, minutes);
+                editTextTitle.setText("");
+                editTextDescription.setText("");
             }
         });
 

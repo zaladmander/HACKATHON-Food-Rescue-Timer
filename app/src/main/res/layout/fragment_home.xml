@@ -26,6 +26,22 @@
         app:layout_constraintTop_toBottomOf="@id/timerLabel"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputTitleContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Food Title"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/numberPickerMinutes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Description field -->
     <com.google.android.material.textfield.TextInputLayout
