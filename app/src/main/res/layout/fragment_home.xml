@@ -1,81 +1,44 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
-
-    <TextView
-        android:id="@+id/timerLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Expires in (minutes)"
-        android:textSize="16sp"
-        android:textColor="#555"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
-
-
-    <NumberPicker
-        android:id="@+id/numberPickerMinutes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/timerLabel"
-        app:layout_constraintStart_toStartOf="parent" />
+    tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputTitleContainer"
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Food Title"
+        android:layout_marginTop="256dp"
+        android:hint="Write description of food you're donating here!!"
         app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/numberPickerMinutes"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Description field -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="What food are you offering?"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/numberPickerMinutes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minLines="3"
-            android:padding="8dp" />
+            android:inputType="textMultiLine"
+            android:minLines="3" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Donate button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonDonate"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:padding="14dp"
         android:text="Donate"
+        android:textAllCaps="false"
         android:textSize="18sp"
-        app:cornerRadius="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textInputContainer"
-        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

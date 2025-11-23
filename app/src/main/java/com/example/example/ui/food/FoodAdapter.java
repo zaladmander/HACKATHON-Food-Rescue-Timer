@@ -42,7 +42,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         FoodItem item = items.get(position);
-        holder.textTitle.setText(item.getTitle());
         holder.textDesc.setText(item.getDescription());
         holder.textTimer.setText(item.getMinutesLeft() + " min left");
     }
@@ -54,16 +53,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     static class FoodViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textTitle;
         TextView textDesc;
         TextView textTimer;
 
         FoodViewHolder(@NonNull View itemView) {
             super(itemView);
-            textTitle = itemView.findViewById(R.id.textTitle);
             textDesc = itemView.findViewById(R.id.textDesc);
             textTimer = itemView.findViewById(R.id.textTimer);
         }
     }
-
 }
