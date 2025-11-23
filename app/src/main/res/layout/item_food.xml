@@ -7,12 +7,19 @@
     android:background="@drawable/food_card_bg">
 
     <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pizza"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <TextView
         android:id="@+id/textDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Food description"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:text="Leftover slices from lunch"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/textTimer"
