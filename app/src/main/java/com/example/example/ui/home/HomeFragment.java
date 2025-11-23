@@ -8,23 +8,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.example.R;
 import com.example.example.ui.food.FoodViewModel;
 
-import org.jspecify.annotations.NonNull;
-
 public class HomeFragment extends Fragment {
 
-    EditText editTextTitle;
-    EditText editTextDescription;
-    private Button buttonDonate;
-    private FoodViewModel foodViewModel;
+    private EditText editTextTitle;
+    private EditText editTextDesc;
     private NumberPicker numberPickerMinutes;
+    private Button buttonDonate;
 
-
+    private FoodViewModel foodViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,37 +30,33 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        editTextTitle = root.findViewById(R.id.editTextTitle);
-        editTextDescription = root.findViewById(R.id.editTextText);
-        buttonDonate = root.findViewById(R.id.buttonDonate);
+        editTextTitle = root.findViewById(R.id.editTextTitle);      // title field
+        editTextDesc  = root.findViewById(R.id.editTextText);       // description field
         numberPickerMinutes = root.findViewById(R.id.numberPickerMinutes);
+        buttonDonate = root.findViewById(R.id.buttonDonate);
 
-        // set allowed range, eg 5–120 minutes
-        numberPickerMinutes.setMinValue(5);
-        numberPickerMinutes.setMaxValue(120);
-        // default selection
-        numberPickerMinutes.setValue(30);
-        numberPickerMinutes.setWrapSelectorWheel(false);
-
-
-        // SHARED ViewModel: this is the important part
+        // shared ViewModel with activity
         foodViewModel = new ViewModelProvider(requireActivity())
                 .get(FoodViewModel.class);
 
+        // NumberPicker setup
+        numberPickerMinutes.setMinValue(5);
+        numberPickerMinutes.setMaxValue(120);
+        numberPickerMinutes.setValue(30);
+        numberPickerMinutes.setWrapSelectorWheel(false);
+
         buttonDonate.setOnClickListener(v -> {
             String title = editTextTitle.getText().toString().trim();
-            String desc = editTextDescription.getText().toString().trim();
-            int minutes = numberPickerMinutes.getValue();
+            String desc  = editTextDesc.getText().toString().trim();
+            int minutes  = numberPickerMinutes.getValue();
 
             if (!title.isEmpty()) {
                 foodViewModel.addDonation(title, desc, minutes);
                 editTextTitle.setText("");
-                editTextDescription.setText("");
+                editTextDesc.setText("");
             }
         });
 
-
         return root;
     }
-
 }

@@ -1,4 +1,5 @@
 package com.example.example.ui.food;
+
 public class FoodItem {
 
     private final String title;
@@ -11,8 +12,19 @@ public class FoodItem {
         this.minutesLeft = minutesLeft;
     }
 
-    public String getTitle() { return title; }
-    public String getDescription() { return description; }
-    public int getMinutesLeft() { return minutesLeft; }
-    public void setMinutesLeft(int minutesLeft) { this.minutesLeft = minutesLeft; }
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getMinutesLeft() {
+        return minutesLeft;
+    }
+
+    public void setMinutesLeft(int minutesLeft) {
+        this.minutesLeft = minutesLeft;
+    }
 }
