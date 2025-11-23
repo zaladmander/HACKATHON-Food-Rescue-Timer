@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,8 +24,6 @@ public class DashboardFragment extends Fragment {
     private RecyclerView recyclerView;
     private FoodAdapter adapter;
     private FoodViewModel foodViewModel;
-    private SearchView searchView;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -34,8 +31,6 @@ public class DashboardFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         recyclerView = root.findViewById(R.id.recyclerFood);
-        searchView = root.findViewById(R.id.searchFoods);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new FoodAdapter(new ArrayList<FoodItem>());
         recyclerView.setAdapter(adapter);
@@ -45,21 +40,6 @@ public class DashboardFragment extends Fragment {
 
         foodViewModel.getItems().observe(getViewLifecycleOwner(), items -> {
             adapter.updateData(items);
-        });
-
-        // SEARCH LOGIC LIVES HERE
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                foodViewModel.filter(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                foodViewModel.filter(newText);
-                return true;
-            }
         });
 
         return root;

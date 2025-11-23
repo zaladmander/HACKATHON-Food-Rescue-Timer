@@ -15,8 +15,6 @@ import java.util.List;
 
 public class FoodViewModel extends ViewModel {
 
-    private final List<FoodItem> allItems = new ArrayList<>();
-
     private final MutableLiveData<List<FoodItem>> items =
             new MutableLiveData<>(new ArrayList<>());
 
@@ -27,38 +25,21 @@ public class FoodViewModel extends ViewModel {
         return items;
     }
 
-    public void addDonation(String title, String description, int minutes) {
-        if (description == null || description.trim().isEmpty()) return;
-        if (minutes <= 0) return;
+    public void addDonation(String description) {
+        if (description == null || description.trim().isEmpty()) {
+            return;
+        }
 
         List<FoodItem> current = items.getValue();
         if (current == null) {
             current = new ArrayList<>();
         }
 
-        current.add(new FoodItem(title, description, minutes));
+        current.add(new FoodItem(description, 30)); // start at 30 minutes
+
         items.setValue(new ArrayList<>(current));
+
         startTicking();
-    }
-
-    public void filter(String query) {
-        if (query == null || query.trim().isEmpty()) {
-            // show everything
-            items.setValue(new ArrayList<>(allItems));
-            return;
-        }
-
-        String q = query.toLowerCase();
-        List<FoodItem> filtered = new ArrayList<>();
-
-        for (FoodItem item : allItems) {
-            if (item.getTitle().toLowerCase().contains(q)
-                    || item.getDescription().toLowerCase().contains(q)) {
-                filtered.add(item);
-            }
-        }
-
-        items.setValue(filtered);
     }
 
     private void startTicking() {
